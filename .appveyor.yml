@@ -1,0 +1,13 @@
+environment:
+  matrix:
+    # first group
+    - VERSION: 4.4.5
+
+    # second group
+    - VERSION: 5.0.1
+
+install:
+  - ps: (new-object net.webclient).DownloadFile('http://download.documentfoundation.org/libreoffice/stable/4.4.5/win/x86/LibreOffice_4.4.5_Win_x86.msi', 'LibreOffice_4.4.5_Win_x86.msi')
+  - ps: msiexec /i LibreOffice_4.4.5_Win_x86.msi /quiet /qn /norestart /log install.log
+  - ps: gc install.log
+
